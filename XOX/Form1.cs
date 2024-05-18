@@ -7,8 +7,10 @@ namespace XOX
         bool turn = true;
         int turnCount = 0;
         private Panel[,] panels;
-        string plus = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\image\plus.png";
-        string circle = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\image\circler.png";
+        int countX = 0;
+        int countO = 0;
+        string crossImagePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\image\plus.png";
+        string circleImagePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\image\circler.png";
 
 
         public Form1()
@@ -23,12 +25,12 @@ namespace XOX
             turn = !turn;
             if (turn)
             {
-                panel.BackgroundImage = Image.FromFile(plus);
+                panel.BackgroundImage = Image.FromFile(crossImagePath);
                 panel.Tag = "X";
             }
             else
             {
-                panel.BackgroundImage= Image.FromFile(circle);
+                panel.BackgroundImage= Image.FromFile(circleImagePath);
                 panel.Tag = "O";
             }
             panel.Enabled = false;
@@ -42,7 +44,17 @@ namespace XOX
             if (CheckForWinner())
             {
                 string winner = turn ? "X" : "O";
+                if ( winner == "X")
+                {
+                    countX++;
+                }
+                else
+                {
+                    countO++;
+                }
                 MessageBox.Show("Игрок за " + winner + " побеждает!", "Поздравляю!");
+                label2.Text = Convert.ToString(countX);
+                label3.Text = Convert.ToString(countO);
 
             }
             else
@@ -80,8 +92,47 @@ namespace XOX
                 return true;
             }
             return false;
+        }
 
-            
+
+        private void ChooseCrossImage(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                crossImagePath = openFileDialog.FileName;
+            }
+            foreach (Panel panel in panels)
+            {
+                panel.BackgroundImage = null;
+                panel.Tag = null;
+                panel.BackColor = SystemColors.ButtonShadow;
+                panel.Enabled = true;
+            }
+
+            turn = true;
+            turnCount = 0;
+        }
+
+        private void ChooseCircleImage(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                circleImagePath = openFileDialog.FileName;
+            }
+            foreach (Panel panel in panels)
+            {
+                panel.BackgroundImage = null;
+                panel.Tag = null;
+                panel.BackColor = SystemColors.ButtonShadow;
+                panel.Enabled = true;
+            }
+
+            turn = true;
+            turnCount = 0;
         }
 
         private void DisablePanels()
@@ -107,6 +158,8 @@ namespace XOX
                     control.Text = "";
                 }
             }
+            label2.Text = "0";
+            label3.Text = "0";
         }
 
         private void Restart(object sender, EventArgs e)
@@ -121,6 +174,8 @@ namespace XOX
 
             turn = true;
             turnCount = 0;
+            label2.Text = "0";
+            label3.Text = "0";
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -136,6 +191,8 @@ namespace XOX
 
             turn = true;
             turnCount = 0;
+            label2.Text = "0";
+            label3.Text = "0";
         }
     }
 }
