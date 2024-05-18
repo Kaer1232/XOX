@@ -32,6 +32,8 @@
             button11 = new Button();
             button12 = new Button();
             label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
@@ -41,6 +43,10 @@
             panel7 = new Panel();
             panel8 = new Panel();
             panel9 = new Panel();
+            label4 = new Label();
+            button1 = new Button();
+            button2 = new Button();
+            label5 = new Label();
             SuspendLayout();
             // 
             // button10
@@ -81,6 +87,24 @@
             label1.Size = new Size(166, 15);
             label1.TabIndex = 2;
             label1.Text = "Дроздов Евгений Евгениевич";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(340, 27);
+            label2.Name = "label2";
+            label2.Size = new Size(13, 15);
+            label2.TabIndex = 3;
+            label2.Text = "0";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(398, 27);
+            label3.Name = "label3";
+            label3.Size = new Size(13, 15);
+            label3.TabIndex = 4;
+            label3.Text = "0";
             // 
             // panel1
             // 
@@ -172,11 +196,53 @@
             panel9.TabIndex = 5;
             panel9.Click += panel_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(291, 12);
+            label4.Name = "label4";
+            label4.Size = new Size(139, 15);
+            label4.TabIndex = 6;
+            label4.Text = "Счёт Крестики : Нолики";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(324, 227);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 7;
+            button1.Text = "Крестик";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += ChooseCrossImage;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(324, 259);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 8;
+            button2.Text = "Нолик";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += ChooseCircleImage;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(324, 207);
+            label5.Name = "label5";
+            label5.Size = new Size(64, 15);
+            label5.TabIndex = 9;
+            label5.Text = "Изменить:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(461, 291);
+            Controls.Add(label5);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(label4);
             Controls.Add(panel9);
             Controls.Add(panel6);
             Controls.Add(panel3);
@@ -186,6 +252,8 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button12);
             Controls.Add(button11);
@@ -200,6 +268,8 @@
         private Button button11;
         private Button button12;
         private Label label1;
+        private Label label2;
+        private Label label3;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
@@ -209,5 +279,9 @@
         private Panel panel7;
         private Panel panel8;
         private Panel panel9;
+        private Label label4;
+        private Button button1;
+        private Button button2;
+        private Label label5;
     }
 }
