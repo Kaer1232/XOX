@@ -40,6 +40,7 @@
             button10 = new Button();
             button11 = new Button();
             button12 = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -153,11 +154,21 @@
             button12.UseVisualStyleBackColor = true;
             button12.Click += button12_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(2, 267);
+            label1.Name = "label1";
+            label1.Size = new Size(166, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Дроздов Евгений Евгениевич";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(461, 291);
+            Controls.Add(label1);
             Controls.Add(button12);
             Controls.Add(button11);
             Controls.Add(button9);
@@ -172,6 +183,7 @@
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -188,5 +200,6 @@
         private Button button10;
         private Button button11;
         private Button button12;
+        private Label label1;
     }
 }
