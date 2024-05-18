@@ -6,31 +6,44 @@ namespace XOX
     {
         bool turn = true;
         int turnCount = 0;
-        private Button[,] buttons;
+        private Panel[,] panels;
+        string plus = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\image\plus.png";
+        string circle = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\image\circler.png";
+
 
         public Form1()
         {
             InitializeComponent();
-            buttons = new Button[,] { { button1, button2, button3 }, { button4, button5, button6 }, { button7, button8, button9 } };
+            panels = new Panel[,] { { panel1, panel2, panel3 }, { panel4, panel5, panel6 }, { panel7, panel8, panel9 } };
         }
 
-        private void button_Click(object sender, EventArgs e)
+        private void panel_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            if (turn)
-                button.Text = "X";
-            else
-                button.Text = "O";
-
+            Panel panel = (Panel)sender;
             turn = !turn;
-            button.Enabled = false;
+            if (turn)
+            {
+                panel.BackgroundImage = Image.FromFile(plus);
+                panel.Tag = "X";
+            }
+            else
+            {
+                panel.BackgroundImage= Image.FromFile(circle);
+                panel.Tag = "O";
+            }
+            panel.Enabled = false;
             turnCount++;
+            if (panel.Enabled == false)
+            {
+                panel.BackColor = Color.White;
+            }
+
 
             if (CheckForWinner())
             {
-                string winner = turn ? "O" : "X";
+                string winner = turn ? "X" : "O";
                 MessageBox.Show("Игрок за " + winner + " побеждает!", "Поздравляю!");
-                DisableButtons();
+
             }
             else
             {
@@ -45,36 +58,37 @@ namespace XOX
         {
             for (int i = 0; i < 3; i++)
             {
-                if (buttons[i, 0].Text == buttons[i, 1].Text && buttons[i, 1].Text == buttons[i, 2].Text && buttons[i, 0].Text != "")
+                if (panels[i, 0].Tag == panels[i, 1].Tag && panels[i, 1].Tag == panels[i, 2].Tag && panels[i, 0].Tag != null)
                 {
                     return true;
                 }
             }
             for (int i = 0; i < 3; i++)
             {
-                if (buttons[0, i].Text == buttons[1, i].Text && buttons[1, i].Text == buttons[2, i].Text && buttons[0, i].Text != "")
+                if (panels[0, i].Tag == panels[1, i].Tag && panels[1, i].Tag == panels[2, i].Tag && panels[0, i].Tag != null)
                 {
                     return true;
                 }
             }
-            if (buttons[0, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[2, 2].Text && buttons[0, 0].Text != "")
+            if (panels[0, 0].Tag == panels[1, 1].Tag && panels[1, 1].Tag == panels[2, 2].Tag && panels[0, 0].Tag != null)
             {
                 return true;
             }
 
-            if (buttons[2, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[0, 2].Text && buttons[2, 0].Text != "")
+            if (panels[2, 0].Tag == panels[1, 1].Tag && panels[1, 1].Tag == panels[0, 2].Tag && panels[2, 0].Tag != null)
             {
                 return true;
             }
-
             return false;
+
+            
         }
 
-        private void DisableButtons()
+        private void DisablePanels()
         {
             foreach (Control control in Controls)
             {
-                if (control is Button)
+                if (control is Panel)
                 {
                     control.Enabled = false;
                 }
@@ -87,7 +101,7 @@ namespace XOX
             turnCount = 0;
             foreach (Control control in Controls)
             {
-                if (control is Button)
+                if (control is Panel)
                 {
                     control.Enabled = true;
                     control.Text = "";
@@ -97,10 +111,12 @@ namespace XOX
 
         private void Restart(object sender, EventArgs e)
         {
-            foreach (Button button in buttons)
+            foreach (Panel panel in panels)
             {
-                button.Text = "";
-                button.Enabled = true;
+                panel.BackgroundImage = null;
+                panel.Tag = null;
+                panel.BackColor = SystemColors.ButtonShadow;
+                panel.Enabled = true;
             }
 
             turn = true;
@@ -110,6 +126,16 @@ namespace XOX
         private void button12_Click(object sender, EventArgs e)
         {
             Close();
+            foreach (Panel panel in panels)
+            {
+                panel.BackgroundImage = null;
+                panel.BackColor = SystemColors.ButtonShadow;
+                panel.Enabled = true;
+                panel.Tag = null;
+            }
+
+            turn = true;
+            turnCount = 0;
         }
     }
 }
